@@ -1,0 +1,40 @@
+output_dir: ~/scratch/ncprior_output/
+checkpoint: /home/xinyu402/scratch/ncprior_output/ImageGeneration/MNIST/VAE_2022-12-06-12-48-14/model_epoch_95.pth
+
+dataset:
+  class: MNIST
+  path: ~/scratch/image-datasets/
+
+task:
+  class: PriorReweighing
+  vae_model:
+    class: VAE
+    latent_dim: 16 # 128
+    num_layer: 4 # 5
+    hidden_dims: [128, 256, 512, 1024] # [32, 64, 128, 256, 512]
+    kernel_size: 3
+    stride: 2
+    padding: 1
+  adv_model:
+    class: NCPriorClassifier
+  
+optimizer:
+  class: Adam
+  lr: 0.01
+  weight_decay: 1.e-5
+
+#scheduler:
+#  class: ExponentialLR
+#  gamma: 0.95
+
+engine:
+  gpus: [0, ]
+  batch_size: 64
+
+train:
+  num_epoch: 3 #30
+  #batch_per_epoch: 10
+
+test_batch_size: 64
+
+
