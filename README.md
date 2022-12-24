@@ -16,11 +16,13 @@ This codebase is based on PyTorch and Pythae. It supports training and inference
 
 ## Installation
 
-
-
-
 ```bash
+conda install pytorch torchvision torchaudio torchmetrics cudatoolkit=11.1 -c pytorch-lts -c nvidia -c conda-forge -c pyg
+conda install matplotlib-base
+conda install numpy
+pip install -U scikit-learn
 pip install pythae
+pip install tqdm
 ```
 
 
